@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<html>
+<head>
+<title>Hello Golang</title>
+</head>
+<body>
+<p>u1</p>
+<p>欢迎收看 {{ .u1.Nmae }}</p>
+<p>性别 {{ .u1.Gender }}</p>
+<p>年龄 {{ .u1.a=Age }}</p>
+<hr>
+<p>m1</p>
+<p>欢迎收看 {{ .m1.nmae }}</p>
+<p>性别 {{ .m1.gender }}</p>
+<p>年龄 {{ .m1.age }}</p>
+{{//pipeline}}
+{{/*pipeline是指产生数据的操作。比如{{.}}{{.Name}}等。Go的模板语法中支持使用管道符号链接多个命令，用法和unix下的管道类似:|前面的命令会将运算结果(或返回值)传递给后一个命令的最后一个位置。
+注意:并不是只有使用了!才是pipeline。Go的模板语法中，pipeline的 概念是传递数据，只要能产生数据的，都是pipeline*/}}
+<hr>
+{{/*定义变量*/}}
+{{$v1 := 100}}
+{{$age := .m1.age}}
+<hr>
+{{/*移除空格  注意:要紧挨 {{和 }}，同时与模板值之间需要使用空格分隔。*/}}
+{{- .m1.name -}}
+<hr>
+{{/*
+条件判断
+{{if pipeline}} Tl {{end}}
+{fif pipeline}} Tl {{else}} To {{end}}
+{fif pipeline}} Tl {felse if pipeline}} To {{end}}
+*/}}
+{{if $v1}}
+{{$v1}}
+{{esle}}
+v1没有值
+{{end}}
+<hr>
+{{/*range*/}}
+{{range $index,$hobby := .hobby}}
+	<p>{{$index}}-{{$hobby}}</p>
+{{else}}
+	hobby没有值
+<hr>
+{{/*with*/}}
+{{with .m1}}
+<p>欢迎收看 {{ .nmae }}</p>
+<p>性别 {{ .gender }}</p>
+<p>年龄 {{ .age }}</p>
+<hr>
+{{/*
+预定义函数
+执行模板时，函数从两个函数字典中查找:首先是模板函数字典，然后是全局函数字典。一般不在模板内定义函数，而是使用Funcs方法添加函数到模板里
+预定义的全局函数如下:
+and--函数返回它的第一个empty参数或者最后一个参数;就是说"and x y"等价于"if x then y else x";所有参数都会执行;
+or--返回第一个非empty参数或者最后一个参数;亦即"or x y"等价于"if xthen xelse y";所有参数都会执行;
+not--返回它的单个参数的布尔值的否定
+len--返回它的参数的整数类型长度
+index--执行结果为第一个参数以剩下的参数为索引/键指向的值;
+如"index x1 2 3"返回x[1][2][3]的值;每个被索引的主体必须是数组、切片或者字典。
+print--即fmt.Sprint
+printf--即fmt.Sprintf
+println--即fmt.Sprintln
+html--返回与其参数的文本表示形式等效的转义HTML。
+这个函数在html/template中不可用。
+urlquery--以适合嵌入到网址查询中的形式返回其参数的文本表示的转义值。
+这个函数在html/template中不可用。
+js--返回与其参数的文本表示形式等效的转义JavaScript。
+*/}}
+<hr>
+{{/*
+比较函数
+布尔函数会将任何类型的零值视为假，其余视为真。
+下面是定义为函数的二元比较运算的集合:
+eq	如果arg1=- arg2则返回真
+ne	如果arg1 != arg2则返回真
+lt	如果arg1< arg2则返回真
+le	如果arg1<= arg2则返回真
+gt	如果arg1>arg2则返回真
+ge	如果arg1 >= arg2则返回真
+*/}}
+<hr>
+{{/*自定义函数*/}}
+{{- .kua -}}
+</body>
+</html>

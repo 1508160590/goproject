@@ -1,0 +1,8 @@
+<h1 style='color:pine'>Hello GoLang</h1>
+<img id='li' src="https://img2.baidu.com/it/u=2030697943,896385705&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=750"></img>
+<button id='b1'>按钮</button>
+<script>
+document.getElementById('b1').onclick = function() {
+    document.getElementById('li').src = "https://img2.baidu.com/it/u=1360308891,224344375&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=760";
+}
+</script>

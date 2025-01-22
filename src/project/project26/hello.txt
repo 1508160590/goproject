@@ -1,0 +1,3 @@
+<h1>Hello World!</h1>
+<h2>Welcome to my website</h2>
+<img id="myImg" src="https://www.gaobei.com/upload/10001/article/2019_06/18153317_khyab7.jpg">
