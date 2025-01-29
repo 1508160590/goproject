@@ -1,11 +1,12 @@
 package main
 
 import (
+	"page/project24/cal"
 	"testing"
 )
 
 func TestAddupper(t *testing.T) {
-	res := addupper(10)
+	res := cal.AddUpper(10)
 	if res != 55 {
 		t.Fatalf("addupper(10) should be 55, but got %d", res)
 	}
